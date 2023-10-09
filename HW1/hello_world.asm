@@ -1,17 +1,30 @@
 .data
-.globl greet
-greet:
-.string "Hello world!\n"
-
+    greet:
+        .string "Hello, "
+    name:
+        .space 24
 .text
-.global main
+    .global _start
+
 _start:
+    mov $0, %rax
+    mov $0, %rdi
+    lea name, %rsi
+    mov $24, %rdx	
+    syscall
+
     mov $1, %rax
     mov $1, %rdi
-    mov $greet, %rsi
-    mov $3, %rax	
+    lea greet, %rsi
+    mov $7, %rdx
     syscall
-    mov $13, %rdx
+
+    mov $1, %rax
+    mov $1, %rdi
+    lea name, %rsi
+    mov $24, %rdx
     syscall
+    
     mov $60, %rax
+    mov $0, %rsi
     syscall
