@@ -1,4 +1,4 @@
-.globl _star
+.globl _start
 .text
 _start:
 	mov $0, %rax
